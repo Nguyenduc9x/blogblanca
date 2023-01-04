@@ -47,6 +47,6 @@
 
 @section('scripts')
 {{-- <script src="{{'resources/js/app.js'}}"></script> --}}
-@vite('resources/js/custom.js')
+{{-- @vite('resources/js/custom.js') --}}
 {{-- script custom for this page --}}
 @endsection
