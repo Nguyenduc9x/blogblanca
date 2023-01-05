@@ -21,11 +21,11 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'password' => 'required|confirmed|min:6',
             // 'repassword' => 'required|same:password|min:6'
-            'terms' => 'required|accepted',
+            // 'terms' => 'required|accepted',
         ]);
         
         $input = $request->all();
-        if  
+         
         User::create([
             'name' => $input['name'],
             'email' => $input['email'],

@@ -1,30 +1,39 @@
 @extends('layouts.master')
 
-@section('titile',"Danh sách người dùng")
+@section('titile', 'Danh sách người dùng')
 
 @section('content')
-<hr>
+    <hr>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Fullname</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>#</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $key=>$us)
+            @if (!empty($users) && $users->count())
+                @foreach ($users as $key => $us)
+                    <tr>
+                        <td>{{ ++$key }}</td>
+                        <td>{{ $us->name }}</td>
+                        <td>{{ $us->email }}</td>
+                        <td>
+                            <a href="/create/{{ $us->id }}" class="btn btn-success">Edit</a>
+                            <a href="/create/{{ $us->id }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
                 <tr>
-                    <td>{{++$key}}</td>
-                    <td>{{$us->email}}</td>
-                    <td>{{$us->password}}</td>
-                    <td>
-                        <a href="/create/{{$us->id}}" class="btn btn-danger">Xóa</a>
-                    </td>
+                    <td colspan="4">There are no data.</td>
                 </tr>
-            @endforeach
+            @endif
         </tbody>
-        
     </table>
+    <div class="d-flex justify-content-center">
+        {{ $users->links() }}
+    </div>
 @endsection

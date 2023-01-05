@@ -1,17 +1,4 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin page</title>
-</head>
-<body>
-    <p>{{session('success')}}</p>
-    <h1>Đây là trang chủ</h1>
-    <a class="btn btn-danger" href="{{route('logout')}}">Logout</a>
-</body>
-</html> --}}
+
 @section('css')
 {{-- css custom for this page --}}
 

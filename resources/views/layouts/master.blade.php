@@ -33,8 +33,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @yield('breadcum')
-            <a class="btn btn-danger" href="{{route('logout')}}">Logout</a>
-            <!-- Main content -->
+                        <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
                     @yield('content')
