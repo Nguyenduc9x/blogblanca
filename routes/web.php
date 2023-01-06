@@ -38,3 +38,4 @@ route::get('register',[RegisterController::class,'register'])->name('register');
 route::get('profile',[UserController::class,'profile'])->name('profile');
 
 route::get('listaccount',[UserController::class,'listaccount'])->name('listaccount');
+route::post('profileupdate',[UserController::class,'profileupdate'])->name('profileupdate');

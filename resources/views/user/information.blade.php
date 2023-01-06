@@ -1,6 +1,6 @@
 @extends('layouts.master')
-
 @section('titile', 'Account information')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -23,6 +23,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                 
                 <div class="col-md-3">
                     <!-- Profile Image -->
                     <div class="card card-primary card-outline">
@@ -31,15 +32,14 @@
                                 <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg"
                                     alt="User profile picture">
                             </div>
-
-                            <h3 class="profile-username text-center">Nina Mcintire</h3>
+                            <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Birthday</b> <a class="float-right">1,322</a>
+                                    <b>Birthday:</b> <a class="float-right">{{ Auth::user()->birthday }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Email</b> <a class="float-right">543</a>
+                                    <b>Email:</b> <a class="float-right">{{ Auth::user()->email }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -53,13 +53,13 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum
-                                enim neque.</p>
+                            <p class="text-muted">{{ Auth::user()->bio }}</p>
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
                 </div>
+                
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card">
@@ -71,30 +71,34 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="settings">
-                                    <form class="form-horizontal">
+                                    <form action="{{route('profileupdate')}}" method="post" class="form-horizontal">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputName"
-                                                    placeholder="Name">
+                                                <input type="text" class="form-control" id="inputName"
+                                                    placeholder="Name" name="name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Birthday</label>
                                             <div class="col-sm-10">
+                                                <label for="join">
+                                                    <input type="datetime-local" class="form-control" name="birthday"
+                                                            style="background-color:white; width:100px" placeholder="Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
                                                 <input type="email" class="form-control" id="inputEmail"
-                                                    placeholder="Email">
+                                                    placeholder="Email" name="email">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputExperience" class="col-sm-2 col-form-label">Bio</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                                <textarea class="form-control" id="inputExperience" placeholder="Some thing  about you" name="bio"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -116,14 +120,9 @@
     </section>
     <!-- /.content -->
     @include('layouts.partial.script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-    </script>
-    <script type="text/javascript">
-        $(function() {
-            $('#datetimepicker').datetimepicker();
-        });
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("input[type=datetime-local]");
     </script>
 @endsection
